@@ -1,7 +1,7 @@
 class WeatherbitResponse {
   final String sunrise; // in GMT timezone
   final String sunset; // in GMT timezone
-  final String observeTime; // in GMT timezone
+  final DateTime observeTime; // in GMT timezone
   final double uv;
   String cityName;
 
@@ -11,10 +11,11 @@ class WeatherbitResponse {
   factory WeatherbitResponse.fromJson(Map<String, dynamic> json) {
     var list = json['data'] as List;
     _Data data = list.map((i) => _Data.fromJson(i)).toList().first;
-    int offset = DateTime.parse(data._observeTime).timeZoneOffset.inHours;
+    Duration offset = DateTime.parse(data._observeTime).timeZoneOffset;
+    DateTime localObserveTime = DateTime.parse(data._observeTime).add(offset);
 
     return WeatherbitResponse(
-        _localizeTime(data._sunrise, offset), _localizeTime(data._sunset, offset), data._observeTime, data._uv);
+        _localizeTime(data._sunrise, offset.inHours), _localizeTime(data._sunset, offset.inHours), localObserveTime, data._uv);
   }
 
   static String _localizeTime(String input, int offset) {
@@ -22,6 +23,11 @@ class WeatherbitResponse {
     int hour = int.parse(values.first) + offset;
     if (hour >= 24) hour -= 24;
     return '$hour:${values.last}';
+  }
+
+  @override
+  String toString() {
+    return 'UVIResponse: {\n\tuv: $uv,\n\tuv_time: ${observeTime.toString()}, \n\tlocation: $cityName, \n\tsunrise: $sunrise, \n\tsunset: $sunset\n}';
   }
 }
 

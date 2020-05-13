@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Loading();
         } else if (snapshot.hasError || !snapshot.hasData) {
-          print('Error: ${snapshot.error}');
+          debugPrint('Error: ${snapshot.error}');
           return ErrorAnnouncement(
             'Something went wrong!',
             reloadCallback: () => setState(() {}),

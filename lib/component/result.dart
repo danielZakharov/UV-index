@@ -19,7 +19,7 @@ class Result extends StatelessWidget {
     }
 
     String _formatDate() {
-      DateTime date = DateTime.parse(data.observeTime);
+      DateTime date = data.observeTime;
       return '${DateFormat('EEEE').format(date)} ${_formatNumber(date.day)}-${_formatNumber(date.month)}-${date.year} @ ${_formatNumber(date.hour)}:${_formatNumber(date.minute)}';
     }
 
