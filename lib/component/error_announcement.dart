@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class ErrorAnnouncement extends StatelessWidget {
   final String error;
+  final Function reloadCallback;
 
-  ErrorAnnouncement(this.error);
+  ErrorAnnouncement(this.error, {this.reloadCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class ErrorAnnouncement extends StatelessWidget {
                   size: 48,
                   color: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: reloadCallback,
               ),
             ],
           ),
