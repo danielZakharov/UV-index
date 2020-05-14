@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:uvindex/localization/app_localizations.dart';
 import 'package:uvindex/screen/home_page.dart';
 
 void main() => runApp(UVIndexApp());
@@ -8,6 +10,23 @@ class UVIndexApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('vi', ''),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      localeResolutionCallback:
+          (Locale locale, Iterable<Locale> supportedLocales) {
+        return supportedLocales
+                .map((l) => l.languageCode)
+                .contains(locale.languageCode)
+            ? locale
+            : supportedLocales.first;
+      },
       home: HomePage(),
     );
   }

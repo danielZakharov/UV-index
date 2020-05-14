@@ -1,17 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uvindex/custom/theme.dart' as AppTheme;
+import 'package:uvindex/localization/app_localizations.dart';
 import 'package:uvindex/model/weatherbit_data.dart';
 
 class Result extends StatelessWidget {
 //  final OpenUVResponse data;
   final WeatherbitResponse data;
 
+  static const List<String> weekdays = [
+    "",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
+  ];
+
+  static const List<String> months = [
+    "",
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec"
+  ];
+
   Result(this.data);
 
   @override
   Widget build(BuildContext context) {
-    AppTheme.Theme theme = AppTheme.Theme(data.uv.round());
+    AppTheme.Theme theme = AppTheme.Theme(data.uv.round(), context);
 
     String _formatNumber(int number) {
       String ret = '0' + number.toString();
@@ -20,7 +48,10 @@ class Result extends StatelessWidget {
 
     String _formatDate() {
       DateTime date = data.observeTime;
-      return '${DateFormat('EEEE').format(date)} ${_formatNumber(date.day)}-${_formatNumber(date.month)}-${date.year} @ ${_formatNumber(date.hour)}:${_formatNumber(date.minute)}';
+      String weekday =
+          AppLocalizations.of(context).translate(weekdays[date.weekday]);
+      String month = AppLocalizations.of(context).translate(months[date.month]);
+      return '$weekday, ${_formatNumber(date.day)} $month ${date.year} @ ${_formatNumber(date.hour)}:${_formatNumber(date.minute)}';
     }
 
     return Scaffold(
@@ -28,7 +59,7 @@ class Result extends StatelessWidget {
       appBar: AppBar(
         title: FittedBox(
           fit: BoxFit.fitWidth,
-          child: Text('UV Index'),
+          child: Text('UV Index', style: TextStyle(color: theme.text)),
         ),
         backgroundColor: theme.primary,
       ),
@@ -66,8 +97,7 @@ class Result extends StatelessWidget {
                             color: theme.text,
                           )),
                           TextSpan(
-                            text:
-                                '${data.sunrise}',
+                            text: '${data.sunrise}',
                             style: TextStyle(color: theme.text),
                           ),
                         ]),
@@ -83,8 +113,7 @@ class Result extends StatelessWidget {
                             color: theme.text,
                           )),
                           TextSpan(
-                              text:
-                                  '${data.sunset}',
+                              text: '${data.sunset}',
                               style: TextStyle(color: theme.text)),
                         ]),
                       ),
@@ -101,7 +130,7 @@ class Result extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Text(
                     theme.riskLevel,
@@ -110,7 +139,7 @@ class Result extends StatelessWidget {
                   Text(
                     '${theme.description}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: theme.text),
+                    style: TextStyle(color: theme.text, fontSize: 16.0),
                   ),
                 ],
               ),

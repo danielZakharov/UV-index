@@ -7,6 +7,7 @@ import 'package:location/location.dart';
 import 'package:uvindex/component//error_announcement.dart';
 import 'package:uvindex/component//loading.dart';
 import 'package:uvindex/component//result.dart';
+import 'package:uvindex/localization/app_localizations.dart';
 import 'package:uvindex/model/weatherbit_data.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const String apiKey = '';      // Add your api key here
+  static const String apiKey = ''; // Add your api key here
 
   Future<LocationData> _getLocationData() async {
     Location location = new Location();
@@ -51,7 +52,7 @@ class _HomePageState extends State<HomePage> {
     if (locationData != null) {
       final response = await http.get(
         'https://api.weatherbit.io/v2.0/current?lat=${locationData.latitude}&lon=${locationData.longitude}&key=$apiKey',
-      );
+      ).timeout(Duration(seconds: 5));
 
 //      http.Response response = http.Response('''{
 //              "result": {
@@ -126,7 +127,7 @@ class _HomePageState extends State<HomePage> {
         } else if (snapshot.hasError || !snapshot.hasData) {
           debugPrint('Error: ${snapshot.error}');
           return ErrorAnnouncement(
-            'Something went wrong!',
+            AppLocalizations.of(context).translate('error_message'),
             reloadCallback: () => setState(() {}),
           );
         } else {

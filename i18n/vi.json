@@ -1,0 +1,37 @@
+{
+  "risk_level_low": "Thấp",
+  "risk_level_moderate": "Trung bình",
+  "risk_level_high": "Cao",
+  "risk_level_very_high": "Rất cao",
+  "risk_level_extreme": "Nguy hiểm",
+
+  "message_low": "Bạn nên đeo kính râm khi trời nắng. Nếu như bạn dễ bị cháy nắng, hãy mặc quần áo dài và sử dụng kem chống nắng SPF 30+. Các bề mặt sáng, như cát, nước, và tuyết làm tăng bức xạ với tia cực tím.",
+  "message_moderate": "Bạn nên ở trong bóng râm vào giữa trưa, khi mặt trời hoạt động mạnh nhất. Nếu ở ngoài trời, hãy mặc quần áo chống nắng, ",
+  "message_high": "Bạn nên tránh ở dưới ánh mặt trời từ 10 giờ sáng đến 4 giờ chiều. Nếu ở ngoài trời, hãy trú dưới bóng râm, mặc quần áo chống nắng, ",
+  "message_very_high": "Bạn nên hạn chế ở dưới ánh mặt trời từ 10 giờ sáng đến 4 giờ chiều. Nếu ở ngoài trời, hãy trú dưới bóng râm, mặc quần áo chống nắng, ",
+  "message_extreme": "Bạn nên tránh tiếp xúc trực tiếp với ánh mặt trời từ 10 giờ sáng tới 4 giờ chiều. Nếu ở ngoài trời, hãy trú dưới bóng râm, mặc quần áo chống nắng ",
+  "message_general": "mũ rộng vành, và kính râm chống tia cực tím. Sử dụng kem chống nắng SPF 30+ mỗi 2 tiếng, kể cả trong ngày râm mát, và sau khi bơi hoặc đổ nhiều mồ hôi. Các bề mặt sáng, như cát, nước, và tuyết làm tăng bức xạ với tia cực tím.",
+
+  "error_message": "Đã có lỗi xảy ra!",
+
+  "monday": "Thứ hai",
+  "tuesday": "Thứ ba",
+  "wednesday": "Thứ tư",
+  "thursday": "Thứ năm",
+  "friday": "Thứ sáu",
+  "saturday": "Thứ bảy",
+  "sunday": "Chủ nhật",
+
+  "jan": "Tháng một",
+  "feb": "Tháng hai",
+  "mar": "Tháng ba",
+  "apr": "Tháng tư",
+  "may": "Tháng năm",
+  "jun": "Tháng sáu",
+  "jul": "Tháng bảy",
+  "aug": "Tháng tám",
+  "sep": "Tháng chín",
+  "oct": "Tháng mười",
+  "nov": "Tháng mười một",
+  "dec": "Tháng mười hai"
+}
