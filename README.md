@@ -4,13 +4,6 @@ A simple UV index in current location
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project use data from Weatherbit API. Get your API key and replace it to `https://github.com/ntuan/UV-index/blob/master/lib/screen/home_page.dart#L18`.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Cheers!!
