@@ -21,7 +21,7 @@ class UVIndexApp extends StatelessWidget {
       ],
       localeResolutionCallback:
           (Locale locale, Iterable<Locale> supportedLocales) {
-        return supportedLocales
+        return locale == null || supportedLocales
                 .map((l) => l.languageCode)
                 .contains(locale.languageCode)
             ? locale

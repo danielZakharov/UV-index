@@ -86,6 +86,22 @@ class Result extends StatelessWidget {
                       style: TextStyle(color: theme.text),
                     ),
                   ),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RichText(
+                      text: TextSpan(children: [
+                        WidgetSpan(
+                            child: ImageIcon(
+                          AssetImage('icons/${data.icon}.png'),
+                          color: theme.text,
+                        )),
+                        TextSpan(
+                          text: AppLocalizations.of(context).translate(data.code),
+                          style: TextStyle(color: theme.text),
+                        ),
+                      ]),
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -93,7 +109,7 @@ class Result extends StatelessWidget {
                         text: TextSpan(children: [
                           WidgetSpan(
                               child: ImageIcon(
-                            AssetImage('images/icons8-sunrise-64.png'),
+                            AssetImage('images/sunrise-64.png'),
                             color: theme.text,
                           )),
                           TextSpan(
@@ -109,7 +125,7 @@ class Result extends StatelessWidget {
                         text: TextSpan(children: [
                           WidgetSpan(
                               child: ImageIcon(
-                            AssetImage('images/icons8-sunset-64.png'),
+                            AssetImage('images/sunset-64.png'),
                             color: theme.text,
                           )),
                           TextSpan(
