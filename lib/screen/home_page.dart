@@ -16,7 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const String apiKey = ''; // TODO Add your api key here
+  static const String apiKey =
+      '69f9387f03ff4a1b8cf77e3c72da04de'; // TODO Add your api key here
 
   Future<LocationData> _getLocationData() async {
     Location location = new Location();
@@ -50,9 +51,11 @@ class _HomePageState extends State<HomePage> {
   Future<WeatherbitResponse> _getUVIndex() async {
     LocationData locationData = await _getLocationData();
     if (locationData != null) {
-      final response = await http.get(
-        'https://api.weatherbit.io/v2.0/current?lat=${locationData.latitude}&lon=${locationData.longitude}&key=$apiKey',
-      ).timeout(Duration(seconds: 5));
+      final response = await http
+          .get(
+            'https://api.weatherbit.io/v2.0/current?lat=${locationData.latitude}&lon=${locationData.longitude}&key=$apiKey',
+          )
+          .timeout(Duration(seconds: 5));
 
       debugPrint(response.body);
 
