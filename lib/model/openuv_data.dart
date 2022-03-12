@@ -1,15 +1,23 @@
 class OpenUVResponse {
   double uv;
+  double temp;
   String uvTime;
   String cityName;
   String sunrise;
   String sunset;
 
-  OpenUVResponse({this.uv, this.uvTime, this.cityName, this.sunrise, this.sunset});
+  OpenUVResponse(
+      {this.uv,
+      this.temp,
+      this.uvTime,
+      this.cityName,
+      this.sunrise,
+      this.sunset});
 
   factory OpenUVResponse.fromJson(Map<String, dynamic> json) {
     return OpenUVResponse(
-        uv: _Result.fromJson(json['result'])._uv,
+        uv: null ? null : _Result.fromJson(json['result'])._uv,
+        temp: null ? null : _Result.fromJson(json['result'])._temp,
         uvTime: _Result.fromJson(json['result'])._uvTime,
         sunrise: _Result.fromJson(json['result'])._sunInfo._sunTimes._sunrise,
         sunset: _Result.fromJson(json['result'])._sunInfo._sunTimes._sunset);
@@ -17,20 +25,21 @@ class OpenUVResponse {
 
   @override
   String toString() {
-    return 'UVIResponse: {\n\tuv: $uv,\n\tuv_time: $uvTime, \n\tlocation: $cityName, \n\tsunrise: $sunrise, \n\tsunset: $sunset\n}';
+    return 'UVIResponse: {\n\tuv: $uv,\n\ttenp: $temp,\n\tuv_time: $uvTime, \n\tlocation: $cityName, \n\tsunrise: $sunrise, \n\tsunset: $sunset\n}';
   }
 }
 
 class _Result {
   final double _uv;
+  final double _temp;
   final String _uvTime;
   final _SunInfo _sunInfo;
 
-  _Result(this._uv, this._uvTime, this._sunInfo);
+  _Result(this._uv, this._temp, this._uvTime, this._sunInfo);
 
   factory _Result.fromJson(Map<String, dynamic> json) {
-    return _Result(json['uv'] as double, json['uv_time'] as String,
-        _SunInfo.fromJson(json['sun_info']));
+    return _Result(json['uv'] as double, json['temp'] as double,
+        json['uv_time'] as String, _SunInfo.fromJson(json['sun_info']));
   }
 }
 

@@ -8,7 +8,7 @@ class Theme {
   String riskLevel;
   String description;
 
-  final int uvIndex;
+  final double uvIndex;
   final BuildContext context;
 
   Theme(this.uvIndex, this.context) {

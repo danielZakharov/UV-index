@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:uvindex/custom/theme.dart' as AppTheme;
 import 'package:uvindex/localization/app_localizations.dart';
 import 'package:uvindex/model/weatherbit_data.dart';
@@ -39,7 +38,7 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppTheme.Theme theme = AppTheme.Theme(data.uv.round(), context);
+    AppTheme.Theme theme = AppTheme.Theme(data.uv, context);
 
     String _formatNumber(int number) {
       String ret = '0' + number.toString();
@@ -96,13 +95,31 @@ class Result extends StatelessWidget {
                           color: theme.text,
                         )),
                         TextSpan(
-                          text: AppLocalizations.of(context).translate(data.code),
+                          text:
+                              '${data.description}', //AppLocalizations.of(context).translate(data.description),
                           style: TextStyle(color: theme.text),
                         ),
                       ]),
                     ),
                   ),
-                  Row(
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RichText(
+                      text: TextSpan(children: [
+                        WidgetSpan(
+                            child: ImageIcon(
+                          AssetImage('icons/temp.png'),
+                          color: theme.text,
+                        )),
+                        TextSpan(
+                          text:
+                              '${data.temp}', //AppLocalizations.of(context).translate(data.description),
+                          style: TextStyle(color: theme.text),
+                        ),
+                      ]),
+                    ),
+                  ),
+                  /* Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RichText(
@@ -112,10 +129,10 @@ class Result extends StatelessWidget {
                             AssetImage('images/sunrise-64.png'),
                             color: theme.text,
                           )),
-                          TextSpan(
+                          /* TextSpan(
                             text: '${data.sunrise}',
                             style: TextStyle(color: theme.text),
-                          ),
+                          ),*/
                         ]),
                       ),
                       SizedBox(
@@ -128,18 +145,18 @@ class Result extends StatelessWidget {
                             AssetImage('images/sunset-64.png'),
                             color: theme.text,
                           )),
-                          TextSpan(
+                          /* TextSpan(
                               text: '${data.sunset}',
-                              style: TextStyle(color: theme.text)),
+                              style: TextStyle(color: theme.text)),*/
                         ]),
                       ),
                     ],
-                  ),
+                  ),*/
                 ],
               ),
             ),
             Text(
-              '${data.uv.round()}',
+              '${data.uv.toStringAsFixed(2)}',
               textAlign: TextAlign.center,
               style: TextStyle(color: theme.text, fontSize: 60.0),
             ),
