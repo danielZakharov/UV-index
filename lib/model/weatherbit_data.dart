@@ -61,7 +61,7 @@ class _Data {
       /* json['sunrise'] as String,
       json['sunset'] as String,*/
       json['last_ob_time'] as String,
-      json['uv'] as double,
+      json['uv'] == null ? 0.0 : json['uv'].toDouble(),
       json['temp'] as double,
       _Weather.fromJson(json['weather']),
     );

@@ -1,9 +1,11 @@
 import 'dart:convert';
-
+import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uvindex/component//error_announcement.dart';
 import 'package:uvindex/component//loading.dart';
 import 'package:uvindex/component//result.dart';
@@ -16,8 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  static const String apiKey =
-      '69f9387f03ff4a1b8cf77e3c72da04de'; // TODO Add your api key here
+  static const String apiKey = '69f9387f03ff4a1b8cf77e3c72da04de';
 
   Future<LocationData> _getLocationData() async {
     Location location = new Location();
@@ -93,9 +94,138 @@ class _HomePageState extends State<HomePage> {
             reloadCallback: () => setState(() {}),
           );
         } else {
-          return Result(snapshot.data);
+          return SkinScreen(snapshot.data);
         }
       },
     );
   }
+}
+
+class SkinScreen extends StatefulWidget {
+  WeatherbitResponse data;
+  SkinScreen(this.data);
+  @override
+  State<SkinScreen> createState() => _SkinScreen(data);
+}
+
+class _SkinScreen extends State<SkinScreen> {
+  SharedPreferences prefs;
+  final WeatherbitResponse data;
+  int selectedRadioTile;
+  int selectedRadio;
+
+  _SkinScreen(this.data);
+  @override
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
+    selectedRadioTile = 0;
+  }
+
+  setSkinType(int val) async {
+    prefs = await SharedPreferences.getInstance();
+    prefs.setString("skin", val.toString());
+  }
+
+  getSkinType() async {
+    prefs = await SharedPreferences.getInstance();
+    return int.parse(prefs.get("type"));
+  }
+
+  setSelectedRadioTile(int val) {
+    setState(() {
+      selectedRadioTile = val;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+      padding: const EdgeInsets.only(top: 40),
+      color: Colors.white10,
+      child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            const Text("Choose your skin type"),
+            RadioListTile(
+              value: 1,
+              groupValue: selectedRadioTile,
+              title: const Text("Type 1"),
+              subtitle: const Text("Radio 1 Subtitle"),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              secondary: Icon(
+                Icons.favorite,
+                color: Colors.pink,
+                size: 24.0,
+                semanticLabel: 'Text to announce in accessibility modes',
+              ),
+              selected: false,
+            ),
+            RadioListTile(
+              value: 2,
+              groupValue: selectedRadioTile,
+              title: const Text("Type 2"),
+              subtitle: const Text("Radio 2 Subtitle"),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              /*secondary: OutlineButton(
+            child: Text("Say Hi"),
+            onPressed: () {
+              print("Say Hello");
+            },
+          ),*/
+              selected: false,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  if (selectedRadioTile == 0) {
+                    simpleDialog(context);
+                  } else {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                Result(data, selectedRadioTile)));
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.orange,
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0),
+                  ),
+                  shadowColor: Colors.black,
+                ),
+                child: Text(' Продолжить')),
+          ]),
+    ));
+  }
+}
+
+Future simpleDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Center(child: Text('ВНИМАНИЕ!')),
+        content: Text('Вы должны выбрать тип кожи!'),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Ok'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
