@@ -33,8 +33,9 @@ class ErrorAnnouncement extends StatelessWidget {
               SizedBox(
                 height: 40.0,
               ),
-              FlatButton(
-                color: Colors.transparent,
+              TextButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white)),
                 child: Icon(
                   Icons.refresh,
                   size: 48,

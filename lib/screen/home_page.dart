@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:http/http.dart' as http;
@@ -19,7 +18,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   static const String apiKey = '69f9387f03ff4a1b8cf77e3c72da04de';
-
+  SharedPreferences prefs;
+  var whichskin = 0;
   Future<LocationData> _getLocationData() async {
     Location location = new Location();
 
@@ -61,6 +61,8 @@ class _HomePageState extends State<HomePage> {
       debugPrint(response.body);
 
       if (response.statusCode == 200) {
+        prefs = await SharedPreferences.getInstance() ?? 0;
+        whichskin = int.parse(prefs.get("type") ?? 0.toString());
         var addresses = await Geocoder.local.findAddressesFromCoordinates(
             Coordinates(locationData.latitude, locationData.longitude));
         var first = addresses.first;
@@ -93,38 +95,42 @@ class _HomePageState extends State<HomePage> {
             AppLocalizations.of(context).translate('error_message'),
             reloadCallback: () => setState(() {}),
           );
-        } else {
-          return SkinScreen(snapshot.data);
-        }
+        } else if (whichskin != 0) {
+          return Result(snapshot.data, whichskin);
+        } else
+          return SkinScreen(snapshot.data, whichskin);
       },
     );
   }
 }
 
+// ignore: must_be_immutable
 class SkinScreen extends StatefulWidget {
   WeatherbitResponse data;
-  SkinScreen(this.data);
+  int selected;
+  SkinScreen(this.data, this.selected);
   @override
-  State<SkinScreen> createState() => _SkinScreen(data);
+  State<SkinScreen> createState() => _SkinScreen(data, selected);
 }
 
 class _SkinScreen extends State<SkinScreen> {
   SharedPreferences prefs;
+  int selected;
   final WeatherbitResponse data;
   int selectedRadioTile;
   int selectedRadio;
 
-  _SkinScreen(this.data);
+  _SkinScreen(this.data, this.selected);
   @override
   void initState() {
     super.initState();
     selectedRadio = 0;
-    selectedRadioTile = 0;
+    selectedRadioTile = selected;
   }
 
   setSkinType(int val) async {
     prefs = await SharedPreferences.getInstance();
-    prefs.setString("skin", val.toString());
+    prefs.setString("type", val.toString());
   }
 
   getSkinType() async {
@@ -218,7 +224,7 @@ Future simpleDialog(BuildContext context) {
         title: Center(child: Text('ВНИМАНИЕ!')),
         content: Text('Вы должны выбрать тип кожи!'),
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             child: Text('Ok'),
             onPressed: () {
               Navigator.of(context).pop();
