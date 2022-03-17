@@ -154,7 +154,7 @@ class _SkinScreen extends State<SkinScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Choose your skin type"),
+            const Text("Выберите свой тип кожи!"),
             RadioListTile(
               value: 1,
               groupValue: selectedRadioTile,
@@ -169,7 +169,7 @@ class _SkinScreen extends State<SkinScreen> {
                 Icons.favorite,
                 color: Colors.pink,
                 size: 24.0,
-                semanticLabel: 'Text to announce in accessibility modes',
+                semanticLabel: 'Текст изображения типа кожи',
               ),
               selected: false,
             ),

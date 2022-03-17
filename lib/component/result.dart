@@ -10,29 +10,29 @@ class Result extends StatelessWidget {
   final int selectedSkin;
   static const List<String> weekdays = [
     "",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday"
+    "Понедельник",
+    "Вторник",
+    "Среда",
+    "Четверг",
+    "Пятница",
+    "Суббота",
+    "Воскресенье"
   ];
 
   static const List<String> months = [
     "",
-    "jan",
-    "feb",
-    "mar",
-    "apr",
-    "may",
-    "jun",
-    "jul",
-    "aug",
-    "sep",
-    "oct",
-    "nov",
-    "dec"
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь"
   ];
 
   Result(this.data, this.selectedSkin);
@@ -207,7 +207,7 @@ class Result extends StatelessWidget {
                   ),
                   shadowColor: Colors.black,
                 ),
-                child: Text('Советы')),
+                child: Text('Рекомендации')),
           ],
         ),
       ),
@@ -246,7 +246,7 @@ class _Advices extends State<Advices> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Советы"),
+            const Text("Рекомендации"),
             ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
