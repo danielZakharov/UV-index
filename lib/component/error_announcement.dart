@@ -22,11 +22,11 @@ class ErrorAnnouncement extends StatelessWidget {
                     WidgetSpan(
                         child: Icon(
                       Icons.announcement,
-                      color: Colors.red,
+                      color: Colors.white,
                     )),
                     TextSpan(
                         text: '\n$error',
-                        style: TextStyle(color: Colors.red, fontSize: 30.0)),
+                        style: TextStyle(color: Colors.white, fontSize: 30.0)),
                   ],
                 ),
               ),
@@ -35,7 +35,7 @@ class ErrorAnnouncement extends StatelessWidget {
               ),
               TextButton(
                 style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.white)),
+                    backgroundColor: MaterialStateProperty.all(Colors.orange)),
                 child: Icon(
                   Icons.refresh,
                   size: 48,
