@@ -10,29 +10,29 @@ class Result extends StatelessWidget {
   final int selectedSkin;
   static const List<String> weekdays = [
     "",
-    "Понедельник",
-    "Вторник",
-    "Среда",
-    "Четверг",
-    "Пятница",
-    "Суббота",
-    "Воскресенье"
+    "monday",
+    "Вт",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday"
   ];
 
   static const List<String> months = [
     "",
-    "Январь",
-    "Февраль",
-    "Март",
-    "Апрель",
-    "Май",
-    "Июнь",
-    "Июль",
-    "Август",
-    "Сентябрь",
-    "Октябрь",
-    "Ноябрь",
-    "Декабрь"
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec"
   ];
 
   Result(this.data, this.selectedSkin);
@@ -44,6 +44,58 @@ class Result extends StatelessWidget {
     String _formatNumber(int number) {
       String ret = '0' + number.toString();
       return ret.substring(ret.length - 2, ret.length);
+    }
+
+    String _formatDesc() {
+      String desc = data.description;
+      if (data.description == "Clear sky") desc = "Чистое небо";
+      if (data.description == "Thunderstorm with light rain")
+        desc = "Гроза с небольшим дождем";
+      if (data.description == "Thunderstorm with rain") desc = "Гроза с дождем";
+      if (data.description == "Thunderstorm with heavy rain")
+        desc = "Гроза с сильным дождем";
+      if (data.description == "Thunderstorm with light drizzle")
+        desc = "Гроза с мелким дождем";
+      if (data.description == "Thunderstorm with drizzle")
+        desc = "Гроза с моросью";
+      if (data.description == "Thunderstorm with heavy drizzle")
+        desc = "Гроза с сильным моросящим дождем";
+      if (data.description == "Thunderstorm with Hail") desc = "Гроза с градом";
+      if (data.description == "Light Drizzle") desc = "Мелкий дождь";
+      if (data.description == "Drizzle") desc = "Морось";
+      if (data.description == "Heavy Drizzle") desc = "Сильная изморось";
+      if (data.description == "Light Rain") desc = "Легкий дождь";
+      if (data.description == "Moderate Rain") desc = "Умеренный дождь";
+      if (data.description == "Heavy Rain") desc = "Ливень";
+      if (data.description == "Freezing rain") desc = "Холодный дождь";
+      if (data.description == "Light shower rain")
+        desc = "Слабый ливневый дождь";
+      if (data.description == "Shower rain") desc = "Ливень";
+      if (data.description == "Heavy shower rain")
+        desc = "Сильный ливневый дождь";
+      if (data.description == "Light snow") desc = "Слабый снег";
+      if (data.description == "Snow") desc = "Снег";
+      if (data.description == "Heavy Snow") desc = "Сильный снег";
+      if (data.description == "Mix snow/rain") desc = "Дождь со снегом";
+      if (data.description == "Sleet") desc = "Мокрый снег";
+      if (data.description == "Heavy sleet") desc = "Сильный мокрый снег";
+      if (data.description == "Snow shower") desc = "Снегопад";
+      if (data.description == "Heavy snow shower") desc = "Сильный снегопад";
+      if (data.description == "Flurries") desc = "Ветренно";
+      if (data.description == "Mist") desc = "Туман";
+      if (data.description == "Smoke") desc = "Легкий туман";
+      if (data.description == "Haze") desc = "Мгла";
+      if (data.description == "Sand/dust") desc = "Песок/пыль";
+      if (data.description == "Fog") desc = "Туман";
+      if (data.description == "Freezing Fog") desc = "Холодный туман";
+      if (data.description == "Few clouds") desc = "Небольшая облачность";
+      if (data.description == "Scattered clouds")
+        desc = "Рассеянная облачность";
+      if (data.description == "Broken clouds") desc = "Разорванная облачность";
+      if (data.description == "Overcast clouds") desc = "Пасмурно";
+      if (data.description == "Unknown Precipitation")
+        desc = "Неизвестные осадки";
+      return desc;
     }
 
     String _formatDate() {
@@ -98,7 +150,7 @@ class Result extends StatelessWidget {
                         )),
                         TextSpan(
                           text:
-                              '${data.description}', //AppLocalizations.of(context).translate(data.description),
+                              _formatDesc(), //AppLocalizations.of(context).translate(data.description),
                           style: TextStyle(color: theme.text),
                         ),
                       ]),

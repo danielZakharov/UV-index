@@ -26,7 +26,7 @@ class AppLocalizations {
 
     _localizedStrings =
         jsonMap.map((key, value) => MapEntry(key, value.toString()));
-
+    //for (var i = 0; i < _localizedStrings.length; i++) {}
     return true;
   }
 

@@ -71,7 +71,6 @@ class _Data {
 class _Weather {
   final String _icon;
   final String _description;
-
   _Weather(this._icon, this._description);
 
   factory _Weather.fromJson(Map<String, dynamic> json) {
