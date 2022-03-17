@@ -109,10 +109,11 @@ class Result extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.secondary,
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         title: FittedBox(
           fit: BoxFit.fitWidth,
-          child: Text('UV Index', style: TextStyle(color: theme.text)),
+          child: Text('УФ Индекс', style: TextStyle(color: theme.text)),
         ),
         backgroundColor: theme.primary,
       ),
