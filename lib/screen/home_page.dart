@@ -191,26 +191,35 @@ class _SkinScreen extends State<SkinScreen> {
           ),*/
               selected: false,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  if (selectedRadioTile == 0) {
-                    simpleDialog(context);
-                  } else {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                Result(data, selectedRadioTile)));
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
-                  ),
-                  shadowColor: Colors.black,
+            Expanded(
+              flex: 2,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (selectedRadioTile == 0) {
+                          simpleDialog(context);
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Result(data, selectedRadioTile)));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.orange,
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(30.0),
+                        ),
+                        shadowColor: Colors.black,
+                      ),
+                      child: Text(' Продолжить')),
                 ),
-                child: Text(' Продолжить')),
+              ),
+            )
           ]),
     ));
   }

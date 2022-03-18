@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:uvindex/custom/theme.dart' as AppTheme;
 import 'package:uvindex/localization/app_localizations.dart';
@@ -292,27 +294,71 @@ class _Advices extends State<Advices> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      padding: const EdgeInsets.only(top: 40),
-      color: Colors.white10,
-      child: Column(
+      body: Container(
+        padding: const EdgeInsets.only(top: 40),
+        color: Colors.white10,
+        child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Рекомендации"),
-            ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(30.0),
-                  ),
-                  shadowColor: Colors.black,
+            ListView(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(0),
+              children: [
+                FlatButton(
+                  onPressed: () {},
+                  child: Align(
+                      alignment: Alignment.centerLeft, child: Text("First")),
                 ),
-                child: Text('Назад')),
-          ]),
-    ));
+                FlatButton(
+                  onPressed: () {},
+                  child: Align(
+                      alignment: Alignment.centerLeft, child: Text("Second")),
+                ),
+                FlatButton(
+                  onPressed: () {},
+                  child: Align(
+                      alignment: Alignment.centerLeft, child: Text("Third")),
+                ),
+                FlatButton(
+                  onPressed: () {},
+                  child: Align(
+                      alignment: Alignment.centerLeft, child: Text("Four")),
+                ),
+              ],
+            ),
+            Expanded(
+              flex: 2,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.orange,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                          shadowColor: Colors.black,
+                        ),
+                        child: Text('Назад'))),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
+
+/*Уход за кожей до пляжа
+1.Провести пилинг тела
+Вы освободите кожу от ороговевших клеток, в результате она станет ровной и гладкой. Отшелушивание можно провести в домашних условиях, для этого понадобится скраб и/или мочалка из люфы.
+!!!!!!Какой бы ни был состав у скраба, пользоваться им каждый день не стоит. Норма для сухой кожи — раз в неделю, для жирной и комбинированной — дважды в неделю.
+2.Усилить увлажнение
+Для эффективного увлажнения важно, чтобы в состав косметического средства входили влагоудерживающие компоненты (глицерин, гиалуроновая кислота), а также компоненты, восстанавливающие защитный барьер кожи и препятствующие тем самым излишнему испарению воды.
+ */
