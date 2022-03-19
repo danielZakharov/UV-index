@@ -158,8 +158,9 @@ class _SkinScreen extends State<SkinScreen> {
             RadioListTile(
               value: 1,
               groupValue: selectedRadioTile,
-              title: const Text("Type 1"),
-              subtitle: const Text("Radio 1 Subtitle"),
+              title: const Text("Type I"),
+              subtitle: const Text(
+                  "Очень светлая кожа, белая; рыжие или светлые волосы; светлые глаза; вероятны веснушки."),
               onChanged: (val) {
                 setSkinType(val);
                 setSelectedRadioTile(int.parse(val.toString()));
@@ -169,15 +170,91 @@ class _SkinScreen extends State<SkinScreen> {
                 Icons.favorite,
                 color: Colors.pink,
                 size: 24.0,
-                semanticLabel: 'Текст изображения типа кожи',
+                semanticLabel: 'Текст изображения типа кожи №1',
               ),
               selected: false,
             ),
             RadioListTile(
               value: 2,
               groupValue: selectedRadioTile,
-              title: const Text("Type 2"),
-              subtitle: const Text("Radio 2 Subtitle"),
+              title: const Text("Type II"),
+              subtitle: const Text(
+                  "Светлая кожа, белая; светлые глаза; светлые волосы."),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              /*secondary: OutlineButton(
+            child: Text("Say Hi"),
+            onPressed: () {
+              print("Say Hello");
+            },
+          ),*/
+              selected: false,
+            ),
+            RadioListTile(
+              value: 3,
+              groupValue: selectedRadioTile,
+              title: const Text("Type III"),
+              subtitle: const Text(
+                  "Светлая кожа, кремово-белый; любой цвет глаз или волос (очень распространенный тип кожи)."),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              /*secondary: OutlineButton(
+            child: Text("Say Hi"),
+            onPressed: () {
+              print("Say Hello");
+            },
+          ),*/
+              selected: false,
+            ),
+            RadioListTile(
+              value: 4,
+              groupValue: selectedRadioTile,
+              title: const Text("Type IV"),
+              subtitle: const Text(
+                  "Оливковая кожа, типичная кожа средиземноморских кавказцев; темно-коричневые волосы; пигментация от средней до сильной."),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              /*secondary: OutlineButton(
+            child: Text("Say Hi"),
+            onPressed: () {
+              print("Say Hello");
+            },
+          ),*/
+              selected: false,
+            ),
+            RadioListTile(
+              value: 5,
+              groupValue: selectedRadioTile,
+              title: const Text("Type V"),
+              subtitle: const Text(
+                  "Коричневая кожа, типичная кожа Ближнего Востока; темные волосы; редко чувствиетелен к солнцу."),
+              onChanged: (val) {
+                setSkinType(val);
+                setSelectedRadioTile(int.parse(val.toString()));
+              },
+              activeColor: Colors.black,
+              /*secondary: OutlineButton(
+            child: Text("Say Hi"),
+            onPressed: () {
+              print("Say Hello");
+            },
+          ),*/
+              selected: false,
+            ),
+            RadioListTile(
+              value: 6,
+              groupValue: selectedRadioTile,
+              title: const Text("Type VI"),
+              subtitle: const Text("Темная кожа; редко чувствителен к солнцу."),
               onChanged: (val) {
                 setSkinType(val);
                 setSelectedRadioTile(int.parse(val.toString()));
