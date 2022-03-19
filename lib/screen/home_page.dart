@@ -154,7 +154,19 @@ class _SkinScreen extends State<SkinScreen> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text("Выберите свой тип кожи!"),
+            const Text(
+              "Выберите свой тип кожи",
+              style: TextStyle(fontSize: 20),
+            ),
+            Container(
+              padding:
+                  EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                    "Шкала Фитцпатрика включает 6 типов кожи, которые по-разному реагируют на солнечное воздействие."),
+              ),
+            ),
             RadioListTile(
               value: 1,
               groupValue: selectedRadioTile,
@@ -166,12 +178,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              secondary: Icon(
-                Icons.favorite,
-                color: Colors.pink,
-                size: 24.0,
-                semanticLabel: 'Текст изображения типа кожи №1',
-              ),
+              secondary: Image.asset("images/type1.png"),
               selected: false,
             ),
             RadioListTile(
@@ -185,12 +192,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              /*secondary: OutlineButton(
-            child: Text("Say Hi"),
-            onPressed: () {
-              print("Say Hello");
-            },
-          ),*/
+              secondary: Image.asset("images/type2.png"),
               selected: false,
             ),
             RadioListTile(
@@ -204,12 +206,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              /*secondary: OutlineButton(
-            child: Text("Say Hi"),
-            onPressed: () {
-              print("Say Hello");
-            },
-          ),*/
+              secondary: Image.asset("images/type3.png"),
               selected: false,
             ),
             RadioListTile(
@@ -223,12 +220,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              /*secondary: OutlineButton(
-            child: Text("Say Hi"),
-            onPressed: () {
-              print("Say Hello");
-            },
-          ),*/
+              secondary: Image.asset("images/type4.png"),
               selected: false,
             ),
             RadioListTile(
@@ -242,12 +234,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              /*secondary: OutlineButton(
-            child: Text("Say Hi"),
-            onPressed: () {
-              print("Say Hello");
-            },
-          ),*/
+              secondary: Image.asset("images/type5.png"),
               selected: false,
             ),
             RadioListTile(
@@ -260,12 +247,7 @@ class _SkinScreen extends State<SkinScreen> {
                 setSelectedRadioTile(int.parse(val.toString()));
               },
               activeColor: Colors.black,
-              /*secondary: OutlineButton(
-            child: Text("Say Hi"),
-            onPressed: () {
-              print("Say Hello");
-            },
-          ),*/
+              secondary: Image.asset("images/type6.png"),
               selected: false,
             ),
             Expanded(

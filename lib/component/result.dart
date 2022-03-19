@@ -99,6 +99,37 @@ class Result extends StatelessWidget {
       return desc;
     }
 
+    String _time_calculation(int selectedS, double uv) {
+      double du = 0;
+      double md;
+      double hours = 0;
+      double minutes = 0;
+      String res;
+      if (selectedS == 1)
+        du = 0.8;
+      else if (selectedS == 2)
+        du = 1;
+      else if (selectedS == 3)
+        du = 1.4;
+      else if (selectedS == 4)
+        du = 1.8;
+      else if (selectedS == 5)
+        du = 2.2;
+      else if (selectedS == 6) {
+        du = 2.6;
+      }
+      md = uv * 0.43;
+      hours = du / md;
+      if (hours < 1) {
+        minutes = 60 * hours;
+        hours = 0;
+      } else if (hours >= 1) {
+        minutes = (60 * (hours - hours.truncate()));
+      }
+      res = "${hours.truncate()} ч. ${minutes.truncate()} мин.";
+      return res;
+    }
+
     String _formatDate() {
       DateTime date = data.observeTime;
       String weekday =
@@ -216,7 +247,7 @@ class Result extends StatelessWidget {
                           style: TextStyle(color: theme.text, fontSize: 20.0),
                         ),
                         Text(
-                          '$selectedSkin,${data.uv}',
+                          "${_time_calculation(selectedSkin, data.uv).toString()}",
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: theme.text,
@@ -279,8 +310,12 @@ class _Advices extends State<Advices> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Рекомендации"),
+        backgroundColor: Colors.orange,
+      ),
       body: Container(
-        padding: const EdgeInsets.only(top: 40),
+        padding: const EdgeInsets.only(top: 10),
         color: Colors.white10,
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -439,42 +474,36 @@ class _AdvicePage extends State<AdvicePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orange,
+        title: Text(adviceTitle),
+      ),
       body: Container(
-        padding: const EdgeInsets.only(top: 40),
+        padding: const EdgeInsets.only(top: 15),
         color: Colors.white10,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              adviceTitle,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
-            Text(adviceText),
-            Expanded(
-              flex: 2,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.orange,
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(30.0),
-                          ),
-                          shadowColor: Colors.black,
-                        ),
-                        child: Text('Назад'))),
-              ),
-            ),
-          ],
+        child: Expanded(
+          flex: 1,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    adviceTitle,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    adviceText,
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
+                  ),
+                ]),
+          ),
         ),
       ),
     );
