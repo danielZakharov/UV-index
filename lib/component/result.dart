@@ -13,7 +13,7 @@ class Result extends StatelessWidget {
   static const List<String> weekdays = [
     "",
     "monday",
-    "Вт",
+    "tuesday",
     "wednesday",
     "thursday",
     "friday",
@@ -109,113 +109,86 @@ class Result extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: theme.secondary,
+      //backgroundColor: theme.secondary,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: FittedBox(
           fit: BoxFit.fitWidth,
-          child: Text('УФ Индекс', style: TextStyle(color: theme.text)),
+          child: Text('УФ Индекс', style: TextStyle(color: Colors.white)),
         ),
-        backgroundColor: theme.primary,
+        // backgroundColor: theme.primary,
+        backgroundColor: Colors.orange,
       ),
       body: SafeArea(
         minimum: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         child: Column(
           children: <Widget>[
-            Expanded(
-              child: Column(
-                children: <Widget>[
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      data.cityName,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: theme.text),
-                    ),
-                  ),
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: Text(
-                      '${_formatDate()}',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(color: theme.text),
-                    ),
-                  ),
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: RichText(
-                      text: TextSpan(children: [
-                        WidgetSpan(
-                            child: ImageIcon(
-                          AssetImage('icons/${data.icon}.png'),
-                          color: theme.text,
-                        )),
-                        TextSpan(
-                          text:
-                              _formatDesc(), //AppLocalizations.of(context).translate(data.description),
-                          style: TextStyle(color: theme.text),
-                        ),
-                      ]),
-                    ),
-                  ),
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: RichText(
-                      text: TextSpan(children: [
-                        WidgetSpan(
-                            child: ImageIcon(
-                          AssetImage('icons/temp.png'),
-                          color: theme.text,
-                        )),
-                        TextSpan(
-                          text:
-                              '${data.temp}', //AppLocalizations.of(context).translate(data.description),
-                          style: TextStyle(color: theme.text),
-                        ),
-                      ]),
-                    ),
-                  ),
-                  /* Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      RichText(
-                        text: TextSpan(children: [
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage('images/sunrise-64.png'),
-                            color: theme.text,
-                          )),
-                          /* TextSpan(
-                            text: '${data.sunrise}',
-                            style: TextStyle(color: theme.text),
-                          ),*/
-                        ]),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      RichText(
-                        text: TextSpan(children: [
-                          WidgetSpan(
-                              child: ImageIcon(
-                            AssetImage('images/sunset-64.png'),
-                            color: theme.text,
-                          )),
-                          /* TextSpan(
-                              text: '${data.sunset}',
-                              style: TextStyle(color: theme.text)),*/
-                        ]),
-                      ),
-                    ],
-                  ),*/
-                ],
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                data.cityName,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: theme.text),
               ),
             ),
-            Text(
-              '${(selectedSkin + data.uv).toStringAsFixed(2)}',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: theme.text, fontSize: 60.0),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                '${_formatDate()}',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: theme.text),
+              ),
+            ),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: RichText(
+                text: TextSpan(children: [
+                  WidgetSpan(
+                      child: ImageIcon(
+                    AssetImage('icons/${data.icon}.png'),
+                    color: theme.text,
+                  )),
+                  TextSpan(
+                    text:
+                        _formatDesc(), //AppLocalizations.of(context).translate(data.description),
+                    style: TextStyle(color: theme.text),
+                  ),
+                ]),
+              ),
+            ),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: RichText(
+                text: TextSpan(children: [
+                  WidgetSpan(
+                      child: ImageIcon(
+                    AssetImage('icons/temp.png'),
+                    color: theme.text,
+                  )),
+                  TextSpan(
+                    text:
+                        '${data.temp}', //AppLocalizations.of(context).translate(data.description),
+                    style: TextStyle(color: theme.text),
+                  ),
+                ]),
+              ),
+            ),
+            Text(""),
+            Container(
+              width: 200.0,
+              height: 200.0,
+              decoration:
+                  BoxDecoration(color: theme.primary, shape: BoxShape.circle),
+              child: Align(
+                alignment: Alignment.center,
+                child: Text(
+                  '${(data.uv).toStringAsFixed(2)}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontSize: 60.0),
+                ),
+              ),
             ),
             Expanded(
               flex: 2,
@@ -226,10 +199,38 @@ class Result extends StatelessWidget {
                     theme.riskLevel,
                     style: TextStyle(color: theme.text, fontSize: 40.0),
                   ),
+                  Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.orange,
+                          width: 5,
+                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
+                    //color: Colors.orange,
+                    height: 115,
+                    width: 400,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Ваше максимальное время воздействия до солнечного ожога составляет:',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: theme.text, fontSize: 20.0),
+                        ),
+                        Text(
+                          '$selectedSkin,${data.uv}',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: theme.text,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
                   Text(
                     '${theme.description}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: theme.text, fontSize: 16.0),
+                    style: TextStyle(color: theme.text, fontSize: 18.0),
                   ),
                 ],
               ),
@@ -276,21 +277,6 @@ class Advices extends StatefulWidget {
 }
 
 class _Advices extends State<Advices> {
-  int selectedRadioTile;
-  int selectedRadio;
-  @override
-  void initState() {
-    super.initState();
-    selectedRadio = 0;
-    selectedRadioTile = 0;
-  }
-
-  setSelectedRadioTile(int val) {
-    setState(() {
-      selectedRadioTile = val;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -307,27 +293,105 @@ class _Advices extends State<Advices> {
               padding: const EdgeInsets.all(0),
               children: [
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdvicePage(
+                                "1.Провести пилинг тела \n Вы освободите кожу от ороговевших клеток, в результате она станет ровной и гладкой. Отшелушивание можно провести в домашних условиях, для этого понадобится скраб и/или мочалка из люфы.\nКакой бы ни был состав у скраба, пользоваться им каждый день не стоит. Норма для сухой кожи — раз в неделю, для жирной и комбинированной — дважды в неделю.\n2.Усилить увлажнение\nДля эффективного увлажнения важно, чтобы в состав косметического средства входили влагоудерживающие компоненты (глицерин, гиалуроновая кислота), а также компоненты, восстанавливающие защитный барьер кожи и препятствующие тем самым излишнему испарению воды.")));
+                  },
                   child: Align(
-                      alignment: Alignment.centerLeft, child: Text("First")),
+                      alignment: Alignment.centerLeft,
+                      child: Text("Уход за кожей до пляжа")),
                 ),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdvicePage(
+                                "Чтобы процесс проходил максимально безопасно, не забудьте положить в пляжную сумку солнцезащитный крем. Обновляйте защиту каждые два часа и после каждого купания, особенно если вытирались полотенцем./n!!!!! При выборе средства, а точнее, степени защиты, помните: первые несколько дней вам понадобится высокий фактор SPF 50+, а как только кожа покроется легким загаром, можно использовать крем с SPF 20 или 30.")));
+                  },
                   child: Align(
-                      alignment: Alignment.centerLeft, child: Text("Second")),
+                      alignment: Alignment.centerLeft,
+                      child: Text("Уход за кожей после пляжа")),
                 ),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdvicePage(
+                                "Сначала примите душ. Есть мнение, что если каждый раз после моря очищать кожу от соли, песка и солнцезащитных средств мягкой мочалкой, то каждый последующий слой загара будет ложиться ровнее и дольше сохраняться. При этом не стоит забывать о дополнительном увлажнении кожи.\nНа отдыхе обязательно пользуйтесь кремом после загара. Обычно в состав таких средств входят мощные влагоудерживающие и смягчающие активные вещества.")));
+                  },
                   child: Align(
-                      alignment: Alignment.centerLeft, child: Text("Third")),
+                      alignment: Alignment.centerLeft,
+                      child: Text("Уход за кожей до пляжа")),
                 ),
                 FlatButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdvicePage(
+                                "1.Провести пилинг тела \n Вы освободите кожу от ороговевших клеток, в результате она станет ровной и гладкой. Отшелушивание можно провести в домашних условиях, для этого понадобится скраб и/или мочалка из люфы.\nКакой бы ни был состав у скраба, пользоваться им каждый день не стоит. Норма для сухой кожи — раз в неделю, для жирной и комбинированной — дважды в неделю.\n2.Усилить увлажнение\nДля эффективного увлажнения важно, чтобы в состав косметического средства входили влагоудерживающие компоненты (глицерин, гиалуроновая кислота), а также компоненты, восстанавливающие защитный барьер кожи и препятствующие тем самым излишнему испарению воды.")));
+                  },
                   child: Align(
-                      alignment: Alignment.centerLeft, child: Text("Four")),
+                      alignment: Alignment.centerLeft,
+                      child: Text("Уход за кожей до пляжа")),
                 ),
               ],
             ),
+            Expanded(
+              flex: 2,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                    padding: const EdgeInsets.only(bottom: 20),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.orange,
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(30.0),
+                          ),
+                          shadowColor: Colors.black,
+                        ),
+                        child: Text('Назад'))),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AdvicePage extends StatefulWidget {
+  final String adviceText;
+
+  AdvicePage(this.adviceText);
+  @override
+  State<AdvicePage> createState() => _AdvicePage(this.adviceText);
+}
+
+class _AdvicePage extends State<AdvicePage> {
+  final String adviceText;
+
+  _AdvicePage(this.adviceText);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        padding: const EdgeInsets.only(top: 40),
+        color: Colors.white10,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text(adviceText),
             Expanded(
               flex: 2,
               child: Align(
